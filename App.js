@@ -56,34 +56,31 @@ const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: Colors.darker,
+    flex: 1,
   };
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+      <StatusBar barStyle='light-content' />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
+        style={backgroundStyle}
+        contentContainerStyle={{flex:1}}>
         <View
           style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
+            alignItems: 'center',
+            justifyContent: 'center',
+            flex: 1,
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
+          <Text
+            style={{
+              color: Colors.light,
+              fontSize: 24, 
+              fontWeight: 'bold',
+            }}> SEEN:
+          </Text>
+          <Text style={{color: Colors.lighter}}>Lorem ipsum</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -94,6 +91,7 @@ const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
+    flex: 1,
   },
   sectionTitle: {
     fontSize: 24,
