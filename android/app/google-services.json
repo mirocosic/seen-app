@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "109326127770",
+    "project_id": "seen-bff80",
+    "storage_bucket": "seen-bff80.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:109326127770:android:2414a79529db28782e8523",
+        "android_client_info": {
+          "package_name": "com.mirocosic.seen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "109326127770-kqh489ooq0g5pu35ng5t1tj8g2tq5ecr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZPDJ_-KfKPxtsFeBxPO2MoOX2_d5STyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "109326127770-kqh489ooq0g5pu35ng5t1tj8g2tq5ecr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
