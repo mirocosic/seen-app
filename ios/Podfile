@@ -19,11 +19,6 @@ target 'seen' do
 
   pod 'react-native-camera', :path => '../node_modules/react-native-camera'
 
-  target 'seenTests' do
-    inherit! :complete
-    # Pods for testing
-  end
-
 
 
   # Enables Flipper.

@@ -26,7 +26,6 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = seen/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = seen/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = seen/main.m; sourceTree = "<group>"; };
-		216CBC19EE072CAF9F7AA736 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-seen-seenTests/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		24A51C0F6F8A1AF35C82C28A /* Pods-seen-seenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-seen-seenTests.debug.xcconfig"; path = "Target Support Files/Pods-seen-seenTests/Pods-seen-seenTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4E603BA82764AB4A00306B28 /* seen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = seen.entitlements; path = seen/seen.entitlements; sourceTree = "<group>"; };
 		4E603BA92764ADBC00306B28 /* seenRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = seenRelease.entitlements; path = seen/seenRelease.entitlements; sourceTree = "<group>"; };
@@ -73,14 +72,6 @@
 				02DDEAC865035CB42F0A913D /* ExpoModulesProvider.swift */,
 			);
 			name = seen;
-			sourceTree = "<group>";
-		};
-		11958641DC667F80B9D31542 /* seenTests */ = {
-			isa = PBXGroup;
-			children = (
-				216CBC19EE072CAF9F7AA736 /* ExpoModulesProvider.swift */,
-			);
-			name = seenTests;
 			sourceTree = "<group>";
 		};
 		13B07FAE1A68108700A75B9A /* seen */ = {
@@ -143,7 +134,6 @@
 			isa = PBXGroup;
 			children = (
 				0DB60295959AFF942F15FB57 /* seen */,
-				11958641DC667F80B9D31542 /* seenTests */,
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";

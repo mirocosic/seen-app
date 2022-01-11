@@ -365,6 +365,8 @@ PODS:
     - React-jsi (= 0.66.2)
     - React-logger (= 0.66.2)
     - React-perflogger (= 0.66.2)
+  - RNGestureHandler (2.1.1):
+    - React-Core
   - RNPermissions (3.1.0):
     - React-Core
   - RNScreens (3.9.0):
@@ -440,6 +442,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNPermissions (from `../node_modules/react-native-permissions`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -543,6 +546,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
   RNPermissions:
     :path: "../node_modules/react-native-permissions"
   RNScreens:
@@ -606,12 +611,13 @@ SPEC CHECKSUMS:
   React-RCTVibration: 3e815c3d2dd2e0e931b68595b5b92d23ba38b3fb
   React-runtimeexecutor: 393e26602c1b248683372051e34db63e359e3b01
   ReactCommon: c0263c1a41509aeb94be3214fa7bc3b71eae5ef6
+  RNGestureHandler: e1ad51d31a580755079d5124d3ab66f0fcaa8311
   RNPermissions: 4b54095940aea8c03fa3e6c92d4ac3647b31ed4e
   RNScreens: 4d79118be80f79fa1f4aa131909a1d6e86280af3
   RNVectorIcons: 4143ba35feebab8fdbe6bc43d1e776b393d47ac8
   Yoga: 9a08effa851c1d8cc1647691895540bc168ea65f
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: d05084b3e1d7084e0bc87a3663922bcab2b2cda6
+PODFILE CHECKSUM: f24f34b0fb29be660bac94294d73da1be176b3aa
 
 COCOAPODS: 1.11.2
