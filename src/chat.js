@@ -1,7 +1,8 @@
 import React, { useState, useCallback, useEffect } from 'react'
+import { connect } from "react-redux"
 import { GiftedChat } from 'react-native-gifted-chat'
 
-export default () => {
+const Chat = ({threads}) => {
   const [messages, setMessages] = useState([]);
 
   const john = {
@@ -55,3 +56,10 @@ export default () => {
     />
   )
 }
+
+export default connect(
+  state => ({
+    threads: state.threads
+  }),
+  null
+)(Chat)

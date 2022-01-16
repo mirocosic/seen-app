@@ -1,9 +1,10 @@
 import React from 'react';
+import { Provider } from "react-redux"
 import { NavigationContainer, DarkTheme } from '@react-navigation/native'
 
 
 import Navigator from "./navigator"
-
+import store from "./store"
 
 const config = {
   screens: {
@@ -21,8 +22,10 @@ const linking = {
 
 export default () => {
   return (
-    <NavigationContainer linking={linking} theme={DarkTheme}>
-      <Navigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer linking={linking} theme={DarkTheme}>
+        <Navigator />
+      </NavigationContainer>
+    </Provider>
   )
 }
