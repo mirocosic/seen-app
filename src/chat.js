@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react'
 import { connect } from "react-redux"
 import { GiftedChat } from 'react-native-gifted-chat'
 
-const Chat = ({threads}) => {
+const Chat = ({threads, route}) => {
   const [messages, setMessages] = useState([]);
 
   const john = {
@@ -17,29 +17,10 @@ const Chat = ({threads}) => {
     avatar: 'https://placeimg.com/140/140/people',
   }
 
+  // initial messages set
   useEffect(() => {
-    setMessages([
-      {
-        _id: 1,
-        text: 'Hey John!',
-        createdAt: new Date(),
-        user: kelly,
-      },
-      {
-        _id: 2,
-        text: 'Hi Kelly',
-        createdAt: new Date(),
-        user: john,
-      },
-      {
-        _id: 3,
-        text: 'How are you?',
-        createdAt: new Date(),
-        user: kelly,
-      },
-      
-    ])
-  }, [])
+    setMessages(threads.find(t => t.id === route?.params?.id).messages)
+  }, [threads])
 
   const onSend = useCallback((messages = []) => {
     setMessages(previousMessages => GiftedChat.append(previousMessages, messages))

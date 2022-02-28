@@ -2,11 +2,11 @@ import React from "react"
 import { connect } from "react-redux"
 import { Image, View, Text, SafeAreaView, Dimensions, TouchableOpacity, StyleSheet } from "react-native"
 
-const Thread = ({title, subtitle, avatarUrl, navigation}) => {
+const Thread = ({id, title, subtitle, avatarUrl, navigation}) => {
   return (
     <TouchableOpacity
       style={styles.threadWrapper}
-      onPress={() => navigation.navigate("Chat", {title: title})}
+      onPress={() => navigation.navigate("Chat", {title: title, id: id})}
     >
       <View style={styles.threadDetails}>
         <Image source={{uri: "https://i.pravatar.cc/300"}} style={styles.threadAvatar}/>
@@ -15,7 +15,6 @@ const Thread = ({title, subtitle, avatarUrl, navigation}) => {
           <Text style={styles.subtitle}>{subtitle}</Text>
         </View>
       </View>
-      
     </TouchableOpacity>
   )
 }
@@ -27,7 +26,7 @@ const ThreadsList = ({navigation, count, threads, addNum}) => {
   return (
     <SafeAreaView style={{ flex: 1}}>
       <View>
-        {threads.map((t)=>(<Thread key={t.id} title={t.title} subtitle={t.subtitle} navigation={navigation} />))}
+        {threads.map((t)=>(<Thread key={t.id} id={t.id} title={t.title} subtitle={t.subtitle} navigation={navigation} />))}
       </View>
 
       <Text style={styles.title}>Count: {count}</Text>
