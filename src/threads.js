@@ -26,14 +26,11 @@ const ThreadsList = ({navigation, count, threads, addNum}) => {
   return (
     <SafeAreaView style={{ flex: 1}}>
       <View>
-        {threads.map((t)=>(<Thread key={t.id} id={t.id} title={t.title} subtitle={t.subtitle} navigation={navigation} />))}
+        {threads
+         .filter(t => t.visible)
+         .map(t =>(<Thread key={t.id} id={t.id} title={t.title} subtitle={t.subtitle} navigation={navigation} />))}
       </View>
 
-      <Text style={styles.title}>Count: {count}</Text>
-      <TouchableOpacity onPress={() => addNum(2)}>
-
-        <Text style={styles.title}>Add 2</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   )
 }
