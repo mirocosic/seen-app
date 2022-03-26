@@ -4,7 +4,7 @@ import threads from "./threads";
 const john = {
   _id: 1,
   name: 'John',
-  avatar: 'https://placeimg.com/140/140/people',
+  avatar: 'https://placeimg.com/140/140/animals',
 }
 
 const kelly = {
@@ -17,44 +17,88 @@ const kelly = {
 const initialState = {
   count: 0,
   threads: [
-    {id: 1,
-      visible: true,
+    {id: "first",
+      visible: false,
       title: "Jake Johnson", subtitle: "An excerpt from last message received...",
       messages: [
         {
           _id: 1,
-          visible: true,
-          text: 'Hey Miro!',
-          createdAt: new Date(),
+          groupId: 1,
+          visible: false,
+          enabled: false,
+          text: 'Hey John!',
+          createdAt: new Date(Date.now() + 1*60*1000),
           user: kelly,
         },
         {
           _id: 2,
-          visible: true,
-          text: 'Hi Kelly',
-          createdAt: new Date(),
+          groupId: 1,
+          visible: false,
+          enabled: false,
+          text: 'Hi Kelly...',
+          createdAt: new Date(Date.now() + 2*60*1000),
           user: john,
         },
         {
           _id: 3,
+          groupId: 1,
           visible: false,
+          enabled: false,
           text: 'How are you?',
-          createdAt: new Date(),
+          createdAt: new Date(Date.now() + 3*60*1000),
+          user: kelly,
+        },
+        {
+          _id: 4,
+          groupId: 2,
+          visible: false,
+          enabled: false,
+          text: 'Not so good...',
+          createdAt: new Date(Date.now() + 4*60*1000),
+          user: john,
+        },
+        {
+          _id: 5,
+          groupId: 2,
+          visible: false,
+          enabled: false,
+          text: 'Why? What happened?',
+          createdAt: new Date(Date.now() + 5*60*1000),
+          user: kelly,
+        },
+        {
+          _id: 6,
+          groupId: 2,
+          visible: false,
+          enabled: false,
+          text: 'I just met her again... She didn\'t say hi. ',
+          createdAt: new Date(Date.now() + 6*60*1000),
+          user: john,
+        },
+        {
+          _id: 7,
+          groupId: 2,
+          visible: false,
+          enabled: false,
+          text: 'Bummer.',
+          createdAt: new Date(Date.now() + 7*60*1000),
           user: kelly,
         },
       ]},
     {id: 2,
       visible: false,
-      title: "Some group titley", subtitle: "An excerpt from last message received...",
+      title: "Some group title", subtitle: "An excerpt from last message received...",
       messages: [
         {
           _id: 1,
+          visible: false,
           text: 'Hey Miro!',
           createdAt: new Date(),
           user: kelly,
         },
         {
           _id: 2,
+          visible: false,
           text: 'Hi Kelly',
           createdAt: new Date(),
           user: john,
@@ -66,18 +110,21 @@ const initialState = {
       messages: [
         {
           _id: 1,
+          visible: false,
           text: 'Hey Miro!',
           createdAt: new Date(),
           user: kelly,
         },
         {
           _id: 2,
+          visible: false,
           text: 'Hi Cat',
           createdAt: new Date(),
           user: john,
         },
         {
           _id: 3,
+          visible: false,
           text: 'Good day?',
           createdAt: new Date(),
           user: kelly,
@@ -89,36 +136,42 @@ const initialState = {
       messages: [
         {
           _id: 1,
+          visible: false,
           text: 'Hey Miro!',
           createdAt: new Date(),
           user: kelly,
         },
         {
           _id: 2,
+          visible: false,
           text: 'Hi Kelly',
           createdAt: new Date(),
           user: john,
         },
         {
           _id: 3,
+          visible: false,
           text: 'How are you?',
           createdAt: new Date(),
           user: kelly,
         },
         {
           _id: 4,
+          visible: false,
           text: 'How are you?',
           createdAt: new Date(),
           user: kelly,
         },
         {
           _id: 5,
+          visible: false,
           text: 'How are you?',
           createdAt: new Date(),
           user: kelly,
         },
         {
           _id: 6,
+          visible: false,
           text: 'How are you?',
           createdAt: new Date(),
           user: kelly,
@@ -157,7 +210,12 @@ const reducers = (state = initialState, action) => {
     case "MAKE_THREAD_VISIBLE":
       return {
         ...state,
-        threads: state.threads.map(thread => thread.code === action.code ? {...thread, visible: true} : thread)
+        threads: state.threads.map(thread => thread.id === action.threadId ? 
+          {...thread, 
+           visible: true,
+           messages: thread.messages.map(msg => msg.groupId === action.groupId ? {...msg, enabled: true} : msg)
+          } 
+          : thread)
       }
 
     case "SHOW_NEXT_MESSAGE":

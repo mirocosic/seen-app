@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { LayoutAnimation } from "react-native"
+import { LayoutAnimation, View } from "react-native"
 import { connect } from "react-redux"
-import { GiftedChat } from 'react-native-gifted-chat'
+import { GiftedChat, Bubble, Avatar } from 'react-native-gifted-chat'
 
 const Chat = ({threads, route, showNextMessage}) => {
   const [messages, setMessages] = useState([]);
@@ -19,7 +19,7 @@ const Chat = ({threads, route, showNextMessage}) => {
   useEffect(() => {
     const ref = setInterval(() => {
       const thread = threads.find(t => t.id === route?.params?.id)
-      const msg = thread.messages.find(m => !m.visible)
+      const msg = thread.messages.find(m => m.enabled && !m.visible)
       if (msg) { showNextMessage(thread.id, msg._id) } else {}
       
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
@@ -33,14 +33,34 @@ const Chat = ({threads, route, showNextMessage}) => {
   }, [])
 
   return (
-    <GiftedChat
-      inverted
-      messages={messages}
-      onSend={messages => onSend(messages)}
-      user={{
-        _id: 1,
-      }}
-    />
+    <View style={{flex:1}}>
+      <View style={{flex:0, backgroundColor: "white"}}/>
+      <GiftedChat
+        style={{flex:1, backgroundColor: "red", flex:1}}
+        messagesContainerStyle={{justifyContent: "flex-end", paddingBottom: 10}}
+        inverted={false}
+        alignTop={true}
+        messages={messages}
+        onSend={messages => onSend(messages)}
+        showUserAvatar
+        renderBubble={props =>
+          <View style={{paddingVertical: 10}}>
+            <Bubble {...props} />
+          </View>
+          }
+        
+        renderAvatar={props =>
+          <View style={{paddingVertical: 10}}>
+            <Avatar {...props} />
+          </View>
+          }
+
+        user={{
+          _id: 1,
+          avatar: 'https://placeimg.com/140/140/animals',
+        }}
+      />
+    </View>
   )
 }
 

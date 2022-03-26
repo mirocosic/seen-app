@@ -7,10 +7,14 @@ import { RNCamera } from 'react-native-camera';
 const Camera = ({makeThreadVisible, navigation}) => {
   const width = Dimensions.get("window").width
 
+  const onRead = event => {
+    console.log("read data: ", event.data)
+  }
+
   return (
     <SafeAreaView style={{ flex: 1}}>
         <QRCodeScanner
-          onRead={event => console.log("read data: ", event.data)} 
+          onRead={onRead}
           vibrate={false}
           showMarker
           markerStyle={{borderRadius: 40, borderColor: "white", width: (width - 40), height: (width - 40)}}
@@ -22,12 +26,17 @@ const Camera = ({makeThreadVisible, navigation}) => {
           }
         />
         <TouchableOpacity onPress={() => {
-          console.log("pressed!")
-          makeThreadVisible("miro")
-          navigation.navigate("Chat", {title: "pero", id: 5})
-
+          makeThreadVisible({threadId: "first", groupId: 1})
+          navigation.navigate("Chat", {title: "pero", id: "first"})
           }}>
-          <Text style={{color: "white"}}>SCAN</Text>
+          <Text style={{color: "white"}}>SCAN first group</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => {
+          makeThreadVisible({threadId: "first", groupId: 2})
+          navigation.navigate("Chat", {title: "pero", id: "first"})
+          }}>
+          <Text style={{color: "white"}}>SCAN second group</Text>
         </TouchableOpacity>
     </SafeAreaView>
   )
@@ -39,6 +48,6 @@ export default connect(
     threads: state.threads
   }),
   dispatch => ({
-    makeThreadVisible: (code) => dispatch({type: "MAKE_THREAD_VISIBLE", code})
+    makeThreadVisible: ({threadId, groupId}) => dispatch({type: "MAKE_THREAD_VISIBLE", threadId, groupId})
   })
 )(Camera)
