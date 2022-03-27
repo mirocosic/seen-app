@@ -20,10 +20,9 @@ const Chat = ({threads, route, showNextMessage}) => {
     const ref = setInterval(() => {
       const thread = threads.find(t => t.id === route?.params?.id)
       const msg = thread.messages.find(m => m.enabled && !m.visible)
-      if (msg) { showNextMessage(thread.id, msg._id) } else {}
-      
+      if (msg) { showNextMessage(thread.id, msg._id) } else { console.log("no msg found")}
+
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
-      //console.log("Showing message: ", msg)
     }, Math.floor(Math.random() * 1000) + 500)
     return () => clearInterval(ref)
   }, [threads])
@@ -41,7 +40,7 @@ const Chat = ({threads, route, showNextMessage}) => {
         inverted={false}
         alignTop={true}
         messages={messages}
-        onSend={messages => onSend(messages)}
+
         showUserAvatar
         renderBubble={props =>
           <View style={{paddingVertical: 10}}>

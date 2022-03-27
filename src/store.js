@@ -1,5 +1,7 @@
-import { createStore, combineReducers } from "redux";
-import threads from "./threads";
+import { createStore, combineReducers } from "redux"
+import { persistStore, persistReducer } from 'redux-persist'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import threads from "./threads"
 
 const john = {
   _id: 1,
@@ -15,9 +17,27 @@ const kelly = {
 
 
 const initialState = {
-  count: 0,
+  //ordered by our story order
+  qrCodes: [
+    {
+      id: "genesysCode",
+      scanned: true
+    },
+    {
+      id: "first",
+      threadId: 1,
+      groupId: 1,
+      scanned: false,
+    },
+    {
+      id: "second",
+      threadId: 1,
+      groupId: 2,
+      scanned: false,
+    }
+  ],
   threads: [
-    {id: "first",
+    {id: 1,
       visible: false,
       title: "Jake Johnson", subtitle: "An excerpt from last message received...",
       messages: [
@@ -178,7 +198,6 @@ const initialState = {
         },
       ]},
     {id: 5,
-      code: "miro",
       visible: false,
       title: "Jane Smith", subtitle: "An excerpt from last message received...",
       messages: [{
@@ -207,9 +226,10 @@ const reducers = (state = initialState, action) => {
         count: state.count + action.number,
       }
 
-    case "MAKE_THREAD_VISIBLE":
+    case "MARK_CODE_SCANNED":
       return {
         ...state,
+        qrCodes: state.qrCodes.map(c => c.id === action.codeId ? {...c, scanned: true} : c),
         threads: state.threads.map(thread => thread.id === action.threadId ? 
           {...thread, 
            visible: true,
@@ -229,9 +249,21 @@ const reducers = (state = initialState, action) => {
             : thread
         )
       }
+
+    case "RESET_STATE":
+      return initialState
+
     default:
       return state
 
 }}
 
-export default store = createStore(reducers)
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage,
+}
+
+const persistedReducer = persistReducer(persistConfig, reducers)
+
+export const store = createStore(persistedReducer)
+export const persistor = persistStore(store)
