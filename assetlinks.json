@@ -1,0 +1,11 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.mirocosic.seen",
+      "sha256_cert_fingerprints":
+        ["79:7C:C7:E9:A0:07:EA:E3:7E:9B:B9:F1:81:9D:13:4E:48:1A:49:AD:D8:59:4D:3F:36:BB:A1:E3:DF:8C:A8:F8"]
+    }
+  }
+]

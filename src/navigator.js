@@ -1,39 +1,61 @@
 import React from "react"
-import { Image } from "react-native"
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { Image, TouchableOpacity } from "react-native"
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Ionicons  } from "@expo/vector-icons"
 
-import Chat from "./chat"
+import ChatScreen from "./chat"
 import Threads from "./threads"
 import Camera from "./camera"
-import camera from "../assets/camera.png"
+import Home from "./home"
+import Dev from "./dev"
+import Info from "./info"
+import scan from "../assets/scan.png"
+import chats from "../assets/chats.png"
 
-const Tab = createMaterialBottomTabNavigator();
-const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator()
+const Chat = createStackNavigator()
 
-const Tabs = () => {
+const ChatStack = () => {
   return (
-    <Tab.Navigator
-      activeColor="white"
-      inactiveColor="#c9c9c9">
-      <Tab.Screen name="Scan" component={Camera} 
-        options={{tabBarIcon: ({color}) => (<Ionicons name="md-camera-outline" size={26} color={color} />)}}/>
-      <Tab.Screen name="Chats " component={Threads} 
-        options={{tabBarIcon: ({color}) => (<Ionicons name="chatbubbles-outline" size={26} color={color} />)}}/>
-    </Tab.Navigator>
-  );
-}
-
-
-const ThreadsStack = () => {
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="Chats" component={Tabs} />
-      <Stack.Screen name="Chat" component={Chat} />
-    </Stack.Navigator>
+    <Chat.Navigator>
+      <Chat.Screen name="Chats" component={Threads} options={{headerShown: false}}/>
+      <Chat.Screen name="Chat" component={ChatScreen} options={{headerShown: false}}/>
+      <Chat.Screen name="Home" component={Home} />
+      <Chat.Screen name="Dev" component={Dev} />
+      <Chat.Screen name="Info" component={Info} options={{headerShown: false}} />
+    </Chat.Navigator>
   )
 }
 
 
-export default ThreadsStack
+const Main = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: "white",
+        tabBarInactiveTintColor: "#9AA8C9",
+        tabBarStyle: {backgroundColor: '#002040', padding: 10, height: 100, paddingBottom: 20},
+        tabBarLabelStyle: {fontSize: 14, fontWeight: "600"},
+        tabBarButton: props => (
+        <TouchableOpacity {...props}
+          style={{backgroundColor: props.accessibilityState.selected ? "#D2298D" : "#002040", flex: 1, padding: 5, marginHorizontal: 10, borderRadius: 10}}>
+        </TouchableOpacity>),
+        
+      }}
+      >
+      <Tab.Screen name="Skeniraj kod" component={Camera} 
+        options={{
+          tabBarIcon: ({color}) => (<Image source={scan} style={{width: 25, height: 25, tintColor: color}} />),
+          headerShown: false,
+        }}/>
+      <Tab.Screen name="Razgovori" component={ChatStack}
+        options={{
+          tabBarIcon: ({color}) => (<Image source={chats} style={{width: 27, height: 25, tintColor: color}} />),
+          headerShown: false,
+          }}
+        />
+    </Tab.Navigator>
+  );
+}
+
+export default Main;

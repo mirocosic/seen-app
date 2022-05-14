@@ -5,6 +5,8 @@
 	<key>com.apple.developer.associated-domains</key>
 	<array>
 		<string>applinks:www.mirocosic.com</string>
+		<string>applinks:seen.fyi</string>
+		<string>applinks:seenapp.net</string>
 	</array>
 </dict>
 </plist>

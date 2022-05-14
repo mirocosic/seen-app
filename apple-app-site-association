@@ -6,11 +6,11 @@
       {
         "appID": "QDRTVHPM2W.com.mirocosic.seen",
         "paths": [
-            "/seen/*"
+            "/*"
         ],
         "appIDs": ["QDRTVHPM2W.com.mirocosic.seen"],
         "components": [
-          {"/": "/seen/*"}
+          {"/": "/*"}
         ]
       }
     ]
